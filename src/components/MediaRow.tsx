@@ -1,12 +1,12 @@
 import { MediaItem } from './../types/DBtypes';
-// src/components/MediaRow.tsx
+
 const MediaRow = (props: {item: MediaItem}) => {
   const {item} = props;
   return (
     // TODO: move <tr> element  for each item property from Home.tsx here
     <tr>
     <td>
-      <img src={item.thumbnail} alt={item.title} style={{ maxWidth: '100px' }} />
+      <img src={item.thumbnail|| undefined} alt={item.title} style={{ maxWidth: '100px' }} />
     </td>
     <td>{item.title}</td>
     <td>{item.description || 'No description available'}</td>

@@ -49,4 +49,5 @@ export type {
   UserDeleteResponse,
   AvailableResponse,
   BooleanResponse,
+  MediaItem
 };
