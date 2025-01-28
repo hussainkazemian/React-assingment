@@ -5,6 +5,7 @@ import Profile from '../src/views/Profile';
 import Upload from '../src/views/Upload';
 import Layout from './components/Layout';
 import Single from '../src/views/Signle';
+import Example from './views/Example';
 
 const App = () => {
   return (
@@ -18,6 +19,8 @@ const App = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/single" element={<Single />} />
+            <Route path="/example" element={<Example />} />
+
 
           </Route>
         </Routes>
