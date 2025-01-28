@@ -263,3 +263,8 @@ button {
   border: none;
   cursor: pointer;
 }
+
+main div p {
+  color: rgb(206, 198, 198);
+  font-size: 20px;
+}
