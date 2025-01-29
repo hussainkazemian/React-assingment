@@ -2,6 +2,7 @@ import {MediaItem, MediaItemWithOwner, UserWithNoPassword} from '../types/DBtype
 import {useEffect, useState} from 'react';
 import {fetchData} from '../lib/functions';
 
+
 const useMedia = () => {
   const [mediaArray, setMediaArray] = useState<MediaItemWithOwner[]>([]);
 
