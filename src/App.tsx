@@ -1,18 +1,17 @@
 import {BrowserRouter, Route, Routes} from 'react-router';
 import './App.css';
 import Home from './views/Home';
-import Profile from '../src/views/Profile';
-import Upload from '../src/views/Upload';
+import Profile from './views/Profile';
+import Upload from './views/Upload';
 import Layout from './components/Layout';
-import Single from '../src/views/Signle';
+import Single from './views/Single';
 import Example from './views/Example';
+import Login from './views/login';
 
 const App = () => {
   return (
     <>
-<BrowserRouter basename={import.meta.env.BASE_URL}>
-
-      {/* <BrowserRouter> */}
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
@@ -20,8 +19,7 @@ const App = () => {
             <Route path="/upload" element={<Upload />} />
             <Route path="/single" element={<Single />} />
             <Route path="/example" element={<Example />} />
-
-
+            <Route path="/login" element={<Login />} />
           </Route>
         </Routes>
       </BrowserRouter>

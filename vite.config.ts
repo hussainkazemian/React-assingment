@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react-swc';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/~hussaink/custom-hooks/',
+  // base: '/~hussaink/custom-hooks/',
   test: {
     environment: 'jsdom',
     globals: true,
