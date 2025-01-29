@@ -1,13 +1,6 @@
-import LoginForm from './LoginForm';
-
 
 const RegisterForm = () => {
-  return (
-    <>
-      <LoginForm/>
-      <RegisterForm/>
-    </>
-  );
+  return <div>Register</div>;
 };
 
 export default RegisterForm;

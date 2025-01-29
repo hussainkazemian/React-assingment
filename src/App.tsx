@@ -4,7 +4,7 @@ import Home from './views/Home';
 import Profile from './views/Profile';
 import Upload from './views/Upload';
 import Layout from './components/Layout';
-import Single from './views/Single';
+import Single from './views/Signle';
 import Example from './views/Example';
 import Login from './views/login';
 

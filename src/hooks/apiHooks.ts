@@ -1,14 +1,11 @@
-import {useState, useEffect} from 'react';
-import {MediaItemWithOwner} from '../types';
+import {MediaItem, MediaItemWithOwner, UserWithNoPassword} from '../types/DBtypes';
+import {useEffect, useState} from 'react';
 import {fetchData} from '../lib/functions';
-import {UserWithNoPassword} from '../types/DBtypes';
-import {MediaItem} from '../types/DBtypes';
-
 
 const useMedia = () => {
   const [mediaArray, setMediaArray] = useState<MediaItemWithOwner[]>([]);
 
-   useEffect(() => {
+  useEffect(() => {
     const getMedia = async () => {
       try {
         // kaikki mediat ilman omistajan tietoja
@@ -19,23 +16,13 @@ const useMedia = () => {
         const mediaWithOwner: MediaItemWithOwner[] = await Promise.all(
           media.map(async (item) => {
             const owner = await fetchData<UserWithNoPassword>(
-              import.meta.env.VITE_AUTH_API + '/users/' + item.media_id,
+              import.meta.env.VITE_AUTH_API + '/users/' + item.user_id,
             );
 
             const mediaItem: MediaItemWithOwner = {
               ...item,
               username: owner.username,
             };
-
-            /* tän voi poistaa, koska sain bäkin korjattua, nyt sieltä tulee string[] eikä string, päivitä tyypit npm:llä
-            if (
-              mediaItem.screenshots &&
-              typeof mediaItem.screenshots === 'string'
-            ) {
-              mediaItem.screenshots = JSON.parse(mediaItem.screenshots);
-            }
-            */
-
             return mediaItem;
           }),
         );
@@ -50,14 +37,16 @@ const useMedia = () => {
 
     getMedia();
   }, []);
+
   return {mediaArray};
-  };
+};
 
-  const useUser=()=>{
-    //Todo implement auth server
-  };
-  const useComments=()=>{
-    //Todo implement media/comments resources API connectino
-  };
+const useUser = () => {
+  // TODO: implement auth/user server API connections here
+};
 
-  export {useMedia, useUser, useComments};
+const useComments = () => {
+  // TODO: implement media/comments resource API connections here
+};
+
+export {useMedia, useUser, useComments};

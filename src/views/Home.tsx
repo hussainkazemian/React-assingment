@@ -1,22 +1,15 @@
-import {
-
-  MediaItemWithOwner,
-
-} from '../types/DBtypes';
+import {MediaItemWithOwner} from '../types/DBtypes';
 import MediaRow from '../components/MediaRow';
 import {useState} from 'react';
 import SingleView from '../components/SignleView';
-import { useMedia } from '../hooks/apiHooks';
+import {useMedia} from '../hooks/apiHooks';
 
 const Home = () => {
-
   const [selectedItem, setSelectedItem] = useState<
     MediaItemWithOwner | undefined
   >(undefined);
 
-  const{mediaArray} = useMedia();
-
-
+  const {mediaArray} = useMedia();
 
   console.log(mediaArray);
 
