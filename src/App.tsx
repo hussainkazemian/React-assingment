@@ -6,7 +6,7 @@ import Upload from './views/Upload';
 import Layout from './components/Layout';
 import Single from './views/Signle';
 import Example from './views/Example';
-import Login from './views/login';
+import Login from './views/Login';
 
 const App = () => {
   return (
