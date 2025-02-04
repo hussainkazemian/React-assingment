@@ -1,23 +1,8 @@
-import {useUser} from '../hooks/apiHooks';
-import {useEffect, useState} from 'react';
-import {UserWithNoPassword} from '../types/DBtypes';
-import {UserResponse} from '../types/MessageTypes';
+
+import { useUserContext } from '../hooks/ContextHooks';
 
 const Profile = () => {
-  const [user, setUser] = useState<UserWithNoPassword | null>(null);
-  const {getUserByToken} = useUser();
-
-  useEffect(() => {
-    getUser();
-  }, []);
-
-  const getUser = async () => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const userResponse: UserResponse = await getUserByToken(token);
-      setUser(userResponse.user);
-    }
-  };
+ const {user} =useUserContext();
 
   return (
     <>

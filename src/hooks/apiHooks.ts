@@ -2,7 +2,7 @@ import {
   MediaItem,
   MediaItemWithOwner,
   UserWithNoPassword,
-} from 'hybrid-types/DBTypes';
+} from '../types/DBtypes';
 import {useEffect, useState} from 'react';
 import {fetchData} from '../lib/functions';
 import {Credentials, RegisterCredentials} from '../types/LocalTypes';
