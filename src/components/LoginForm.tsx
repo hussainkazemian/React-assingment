@@ -1,11 +1,9 @@
-import {useNavigate} from 'react-router';
-import {useAuthentication} from '../hooks/apiHooks';
 import {useForm} from '../hooks/FormHooks';
 import {Credentials} from '../types/LocalTypes';
+import {useUserContext} from '../hooks/ContextHooks';
 
 const LoginForm = () => {
-  const navigate = useNavigate();
-  const {postLogin} = useAuthentication();
+  const {handleLogin} = useUserContext();
   const initValues: Credentials = {
     username: '',
     password: '',
@@ -13,12 +11,7 @@ const LoginForm = () => {
 
   const doLogin = async () => {
     try {
-      const loginResult = await postLogin(inputs as Credentials);
-      console.log('doLogin result', loginResult);
-      if (loginResult) {
-        localStorage.setItem('token', loginResult.token);
-        navigate('/');
-      }
+      handleLogin(inputs as Credentials);
     } catch (error) {
       console.error((error as Error).message);
       // Display error to user here(?)

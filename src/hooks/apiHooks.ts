@@ -2,7 +2,7 @@ import {
   MediaItem,
   MediaItemWithOwner,
   UserWithNoPassword,
-} from '../types/DBtypes';
+} from 'hybrid-types/DBTypes';
 import {useEffect, useState} from 'react';
 import {fetchData} from '../lib/functions';
 import {Credentials, RegisterCredentials} from '../types/LocalTypes';
@@ -71,12 +71,16 @@ const useUser = () => {
   // TODO: implement auth/user server API connections here
   const getUserByToken = async (token: string) => {
     const options = {
-      headers: {Authorization: 'Bearer ' + token}
+      headers: {Authorization: 'Bearer ' + token},
     };
-    return await fetchData<UserResponse>(
-      import.meta.env.VITE_AUTH_API + '/users/token',
-      options,
-    );
+    try {
+      return await fetchData<UserResponse>(
+        import.meta.env.VITE_AUTH_API + '/users/token',
+        options,
+      );
+    } catch (error) {
+      throw error as Error;
+    }
   };
 
   const postRegister = async (credentials: RegisterCredentials) => {
