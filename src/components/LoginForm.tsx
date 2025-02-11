@@ -2,7 +2,10 @@ import {useForm} from '../hooks/FormHooks';
 import {Credentials} from '../types/LocalTypes';
 import {useUserContext} from '../hooks/ContextHooks';
 
-const LoginForm = () => {
+const LoginForm = (props: {
+  toggleRegister: () => void;
+}) => {
+  const {toggleRegister} = props;
   const {handleLogin} = useUserContext();
   const initValues: Credentials = {
     username: '',
@@ -50,9 +53,11 @@ const LoginForm = () => {
           />
         </div>
         <button type="submit">Login</button>
+        <button onClick={toggleRegister}>or register?</button>
       </form>
     </>
   );
 };
 
 export default LoginForm;
+

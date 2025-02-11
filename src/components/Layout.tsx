@@ -1,40 +1,65 @@
-import {Link, Outlet} from 'react-router';
-import {useUserContext} from '../hooks/ContextHooks';
+import { Link, Outlet } from 'react-router';
+import { useUserContext } from '../hooks/ContextHooks';
 import { useEffect } from 'react';
 
 const Layout = () => {
-  // jos käyttäjää ei ole, kutsu handleAutoLogin()
-  const {user, handleAutoLogin} = useUserContext();
+  const { user, handleAutoLogin } = useUserContext();
+
   useEffect(() => {
     if (!user) {
       handleAutoLogin();
     }
-  }, []);
+  }, [user, handleAutoLogin]);
 
   return (
     <>
       <h1>My App</h1>
       <div>
         <nav>
-          <ul>
+          <ul className="m-0 flex list-none justify-end bg-stone-600 p-0">
             <li>
-              <Link to="/">Home</Link>
+              <Link
+                className="block p-4 text-center transition-all duration-500 ease-in-out hover:bg-stone-700"
+                to="/"
+              >
+                Home
+              </Link>
             </li>
             {user ? (
               <>
                 <li>
-                  <Link to="/profile">Profile</Link>
+                  <Link
+                    className="block p-4 text-center transition-all duration-500 ease-in-out hover:bg-stone-700"
+                    to="/profile"
+                  >
+                    Profile
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/upload">Upload</Link>
+                  <Link
+                    className="block p-4 text-center transition-all duration-500 ease-in-out hover:bg-stone-700"
+                    to="/upload"
+                  >
+                    Upload
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/logout">Logout</Link>
+                  <Link
+                    className="block p-4 text-center transition-all duration-500 ease-in-out hover:bg-stone-700"
+                    to="/logout"
+                  >
+                    Logout
+                  </Link>
                 </li>
               </>
             ) : (
               <li>
-                <Link to="/login">Login</Link>
+                <Link
+                  className="block p-4 text-center transition-all duration-500 ease-in-out hover:bg-stone-700"
+                  to="/login"
+                >
+                  Login
+                </Link>
               </li>
             )}
           </ul>
@@ -49,3 +74,4 @@ const Layout = () => {
 };
 
 export default Layout;
+
