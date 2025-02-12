@@ -1,4 +1,4 @@
-import {MediaItemWithOwner} from 'hybrid-types/DBTypes';
+import {MediaItemWithOwner} from '../types/DBtypes';
 import {NavigateFunction, useLocation, useNavigate} from 'react-router';
 import Likes from '../components/likes';
 

@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()] ,
-  // base: '/~hussaink/tailwind/',
+  // base: '/~hussaink/likes/',
   test: {
     environment: 'jsdom',
     globals: true,
