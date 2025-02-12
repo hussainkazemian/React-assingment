@@ -36,3 +36,4 @@ const SingleView = (props: {
   );
 };
 export default SingleView;
+

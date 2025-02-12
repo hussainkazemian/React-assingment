@@ -1,4 +1,4 @@
-import {MediaItemWithOwner} from '../types/DBtypes';
+import {MediaItemWithOwner} from 'hybrid-types/DBTypes';
 import MediaRow from '../components/MediaRow';
 import {useState} from 'react';
 import SingleView from '../components/SignleView';
