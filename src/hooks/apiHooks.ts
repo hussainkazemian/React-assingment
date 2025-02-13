@@ -1,4 +1,5 @@
 import {
+  Comment,
   Like,
   MediaItem,
   MediaItemWithOwner,
@@ -172,16 +173,59 @@ const useUser = () => {
     );
   };
 
+  const getUserById = async (id: number) => {
+    return await fetchData<UserWithNoPassword>(
+      import.meta.env.VITE_AUTH_API + '/users/' + id,
+    );
+  };
+
   return {
     getUserByToken,
     postRegister,
     getUserNameAvailable,
     getEmailAvailable,
+    getUserById,
   };
 };
 
-const useComments = () => {
-  // TODO: implement media/comments resource API connections here
+const useComment = () => {
+  const {getUserById} = useUser();
+
+  const postComment = async (
+    comment_text: string,
+    media_id: number,
+    token: string,
+  ) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + token,
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({media_id, comment_text}),
+    };
+    return await fetchData<MessageResponse>(
+      import.meta.env.VITE_MEDIA_API + '/comments',
+      options,
+    );
+  };
+
+  const getCommentsByMediaId = async (media_id: number) => {
+    // Send a GET request to /comments/bymedia/:media_id to get the comments.
+    const comments = await fetchData<Comment[]>(
+      import.meta.env.VITE_MEDIA_API + '/comments/bymedia/' + media_id,
+    );
+    // Send a GET request to auth api and add username to all comments
+    const commentsWithUsername = await Promise.all<Comment & {username: string}>(
+      comments.map(async (comment) => {
+        const user = await getUserById(comment.user_id);
+        return {...comment, username: user.username};
+      }),
+    );
+    return commentsWithUsername;
+  };
+
+  return {postComment, getCommentsByMediaId};
 };
 
 const useLike = () => {
@@ -240,5 +284,4 @@ const useLike = () => {
   return {postLike, deleteLike, getCountByMediaId, getUserLike};
 };
 
-export {useMedia, useFile, useAuthentication, useUser, useComments, useLike};
-
+export {useMedia, useFile, useAuthentication, useUser, useComment, useLike};
